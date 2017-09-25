@@ -5,9 +5,10 @@ public class Banco {
 	public static void main(String[] args) {
 		
 		Conta conta = new Conta(00001, 012, "Tassio Lima", "CC", true);
-		conta.depositar(150);
+		//conta.depositar(0);
 		conta.abriConta();
-		conta.sacar(0);
+		//conta.sacar(0);
+		conta.pagarMensal();
 		conta.statusConta();
 		
 		

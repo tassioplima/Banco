@@ -4,9 +4,9 @@ public class Conta {
 
 	public int conta;
 	public int agencia;
-	protected String dono;
+	private String dono;
 	protected String tipo;
-	public boolean status;
+	private boolean status;
 	private int saldo;
 
 	// Getters e Setters
@@ -91,6 +91,7 @@ public class Conta {
 	public void fecharConta() {
 
 		this.status = false;
+		
 
 	}
 
@@ -120,6 +121,20 @@ public class Conta {
 	}
 
 	public void pagarMensal() {
+		
+		
+		
+		if (tipo.equals("CC")){
+			
+			this.saldo -= 12;
+			
+		}else if (tipo.equals("CP")){
+			
+			this.saldo -= 20;
+			
+		}
+		
+		
 
 	}
 	
