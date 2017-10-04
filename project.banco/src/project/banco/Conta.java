@@ -103,29 +103,23 @@ public class Conta {
 	public void depositar(int depositar) {
 
 		if (status == true){
-			
 			this.saldo += depositar;
-		}else if (status ==false){
+		}else if (status == false){
 			System.out.println("Conta deve estar aberta para depositar.");
 		}
 		
 
 	}
 
-	public void sacar(int sacar) {
+	public void saque(int sacar) {
 
-		this.saldo -= sacar;
-
-		if (saldo < 0) {
-
-			System.out.println("Você não pode sacar mais dinheiro está " + this.getSaldo() + " negativo");
-		} else if (saldo == 0) {
-
+		if (status == true && saldo < 0) {
+			System.out.println("Você não pode sacar mais dinheiro está " + this.getSaldo() + " reais negativo");
+		} else if (status == true && saldo == 0) {
 			System.out.println("Você está sem saldo.");
-
 		} else {
-			System.out.println("Você pode sacar dinheiro tem " + this.getSaldo() + " positivo");
-
+			System.out.println("Você pode sacar a quantidade de " + this.getSaldo() + " reais.");
+			this.saldo -= sacar;
 		}
 
 	}
