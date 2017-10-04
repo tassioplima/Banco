@@ -61,92 +61,98 @@ public class Conta {
 
 	// Constructor
 
-	public Conta(int conta, int agencia, String dono, String tipo, boolean status) {
+	public Conta(int conta, int agencia, String dono, String tipo) {
 		super();
-		this.setConta(conta); 
-		this.setAgencia(agencia);
-		this.setDono(dono);
-		this.setTipo(tipo);
-		this.setStatus(status);
-		
+		setConta(conta);
+		setAgencia(agencia);
+		setDono(dono);
+		setTipo(tipo);
+		setStatus(false);
+
 	}
 
 	// Métodos
 
-	public void abriConta() {
-
-		this.status = true;
-		
+	public void abrirConta() {
+		setStatus(true);
 		if (status == true && tipo.equals("CC")) {
-			
-			depositar(50);
-			
-		}else if (status == true && tipo.equals("CP")) {
-			
-			depositar(150);
+			setSaldo(50);
+			// depositar(50);
+		} else if (status == true && tipo.equals("CP")) {
+			setSaldo(150);
+			// depositar(150);
 		}
-
 	}
 
 	public void fecharConta() {
-
-		this.status = false;
 		
+		if (saldo == 0) {
+			setStatus(false);
+			System.out.println("Conta fechada");
+
+		} else if (saldo < 0 ) {
+			System.out.println("Conta em Débito");
+
+		}else if (saldo > 1){
+			System.out.println("Conta com valor " + getSaldo() + " favor realizar o saque");
+			
+		}
 
 	}
 
 	public void depositar(int depositar) {
+
+		if (status == true){
+			
+			this.saldo += depositar;
+		}else if (status ==false){
+			System.out.println("Conta deve estar aberta para depositar.");
+		}
 		
-		this.saldo += depositar;
 
 	}
 
 	public void sacar(int sacar) {
-		
+
 		this.saldo -= sacar;
-		
-		if (saldo < 0){
-			
-			System.out.println("Você não pode sacar mais dinheiro está "+ this.getSaldo() + " negativo");
-		} else if (saldo == 0){
-			
+
+		if (saldo < 0) {
+
+			System.out.println("Você não pode sacar mais dinheiro está " + this.getSaldo() + " negativo");
+		} else if (saldo == 0) {
+
 			System.out.println("Você está sem saldo.");
-			
-		}else{
-			System.out.println("Você pode sacar dinheiro tem "+ this.getSaldo() + " positivo");
-			
+
+		} else {
+			System.out.println("Você pode sacar dinheiro tem " + this.getSaldo() + " positivo");
+
 		}
-		
 
 	}
 
 	public void pagarMensal() {
-		
-		
-		
-		if (tipo.equals("CC")){
-			
+
+		if (tipo.equals("CC")) {
+
 			this.saldo -= 12;
-			
-		}else if (tipo.equals("CP")){
-			
+
+		} else if (tipo.equals("CP")) {
+
 			this.saldo -= 20;
-			
+
 		}
-		
-		
 
 	}
-	
-	public void statusConta(){
-		
+
+	public void statusConta() {
+
 		System.out.println("Conta: " + this.getConta());
 		System.out.println("Agencia: " + this.getAgencia());
 		System.out.println("Dono: " + this.getDono());
 		System.out.println("Saldo: " + this.getSaldo());
 		System.out.println("Tipo: " + this.getTipo());
 		System.out.println("Status: " + this.isStatus());
-		
+
 	}
 
 }
